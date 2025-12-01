@@ -123,27 +123,6 @@ export default function Hero() {
       ref={heroRef}
       className="relative w-full min-h-screen overflow-hidden bg-[#f5f3f1] text-slate-900"
     >
-      {/* Top nav */}
-      <header className="pointer-events-none fixed top-6 left-0 right-0 z-30 flex items-center justify-between px-[6%] text-[0.62rem] tracking-[0.24em] uppercase text-slate-900">
-        <div className="flex items-center gap-3 pointer-events-auto">
-          <span className="h-px w-6 bg-slate-900" />
-          <button
-            onClick={() => scrollTo("#about")}
-            className="hover:opacity-70 transition-opacity"
-          >
-            My Story, Press, Resources, Contact
-          </button>
-        </div>
-
-        <div className="pointer-events-auto flex items-center gap-4">
-          <button
-            onClick={() => scrollTo("#experience")}
-            className="hover:opacity-70 transition-opacity"
-          >
-            Business Collaborations & Media
-          </button>
-        </div>
-      </header>
 
       {/* Image strip with continuous right-to-left flow */}
       <div className="fixed inset-0 flex items-center justify-center pointer-events-none">

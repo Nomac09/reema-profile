@@ -57,14 +57,14 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Right: Collaborations + arrow - now scrolls to contact */}
+        {/* Right: Business Collaborations & Media with arrow pointing to contact */}
         <div className="hidden md:block">
           <button
             onClick={() => scrollTo("#contact")}
             className={`${linkBase} ${textColor}`}
           >
-            <span>Collaborations</span>
-            <span className="ml-1.5">→</span>
+            <span>Business Collaborations & Media</span>
+            <span className="ml-1.5">↓</span> {/* Changed to down arrow */}
           </button>
         </div>
 
@@ -100,8 +100,8 @@ export default function Header() {
               }}
               className="flex items-center gap-2 text-left"
             >
-              <span>Collaborations</span>
-              <span className="ml-1.5">→</span>
+              <span>Business Collaborations & Media</span>
+              <span className="ml-1.5">↓</span> {/* Changed to down arrow */}
             </button>
           </nav>
         </div>
