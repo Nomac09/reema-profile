@@ -113,10 +113,10 @@ export default function Footer() {
               Connect
             </div>
             <a
-              href="mailto:contact@reema-alsawalma.com"
+              href="mailto:reema.alsawalma@gmail.com"
               className="text-[0.75rem] font-medium text-slate-100 underline-offset-4 hover:underline"
             >
-              contact@reema-alsawalma.com
+              reema.alsawalma@gmail.com
             </a>
             
             <div className="mt-3 flex flex-wrap gap-2 text-[0.75rem]">
