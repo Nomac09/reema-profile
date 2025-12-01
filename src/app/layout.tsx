@@ -1,9 +1,10 @@
+
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { ReactNode } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import Hero from '@/components/sections/Hero'; // Ensure Hero is imported
+import Hero from '@/components/sections/Hero';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,8 +17,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header /> 
-        <Hero /> {/* Ensure Hero is called here */}
+        <Header />
+        <Hero /> {/* Keep or remove this line depending on whether you want Hero on every page */}
         {children}
         <Footer />
       </body>
