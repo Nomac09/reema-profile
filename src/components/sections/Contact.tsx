@@ -1,5 +1,7 @@
 "use client";
 
+import { FaInstagram, FaSnapchatGhost, FaTiktok } from 'react-icons/fa';
+
 export default function Contact() {
   return (
     <section
@@ -56,22 +58,10 @@ export default function Contact() {
             <div className="mt-5 space-y-6 text-[0.9rem] text-slate-900">
               <div>
                 <div className="text-[0.78rem] uppercase tracking-[0.18em] text-slate-500">
-                  MY INBOX
-                </div>
-                <a
-                  href="mailto:contact@reemasawalma.com"
-                  className="mt-1.5 inline-block text-[0.95rem] font-medium underline-offset-4 hover:underline"
-                >
-                  contact@reemasawalma.com
-                </a>
-              </div>
-
-              <div>
-                <div className="text-[0.78rem] uppercase tracking-[0.18em] text-slate-500">
-                  MY BASES
+                  MY BASE
                 </div>
                 <p className="mt-1.5 text-[0.95rem] text-slate-800">
-                  Dubai & Jeddah — I travel frequently for the right projects
+                  Dubai — I travel frequently for the right projects
                 </p>
               </div>
 
@@ -84,25 +74,28 @@ export default function Contact() {
                     href="https://instagram.com/reema.alsawalma"
                     target="_blank"
                     rel="noreferrer"
-                    className="rounded-full border border-slate-900/15 bg-white px-4 py-2 text-slate-900 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white"
+                    className="rounded-full border border-slate-900/15 bg-white px-4 py-2 text-slate-900 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white flex items-center gap-2"
                   >
-                    Instagram
+                    <FaInstagram className="h-4 w-4" />
+                    <span>Instagram</span>
                   </a>
                   <a
                     href="https://www.snapchat.com/add/reemaalsawalma"
                     target="_blank"
                     rel="noreferrer"
-                    className="rounded-full border border-slate-900/15 bg-white px-4 py-2 text-slate-900 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white"
+                    className="rounded-full border border-slate-900/15 bg-white px-4 py-2 text-slate-900 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white flex items-center gap-2"
                   >
-                    Snapchat
+                    <FaSnapchatGhost className="h-4 w-4" />
+                    <span>Snapchat</span>
                   </a>
                   <a
                     href="https://tiktok.com/@reema.alsawalma"
                     target="_blank"
                     rel="noreferrer"
-                    className="rounded-full border border-slate-900/15 bg-white px-4 py-2 text-slate-900 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white"
+                    className="rounded-full border border-slate-900/15 bg-white px-4 py-2 text-slate-900 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white flex items-center gap-2"
                   >
-                    TikTok
+                    <FaTiktok className="h-4 w-4" />
+                    <span>TikTok</span>
                   </a>
                 </div>
               </div>
