@@ -87,7 +87,6 @@ export default function Experience(): React.ReactElement {
                           controls={false}
                           className="h-full w-full object-contain"
                           src="/videos/studio76-clip.mp4"
-                          poster="/images/studio76-poster.jpg"
                           preload="metadata"
                         />
                       )}
@@ -129,7 +128,6 @@ export default function Experience(): React.ReactElement {
                             controls={false}
                             className="h-full w-full object-contain"
                             src="/videos/la-donna-store.mp4"
-                            poster="/images/la-donna-store.jpg"
                             preload="metadata"
                           />
                         )}
@@ -167,7 +165,6 @@ export default function Experience(): React.ReactElement {
                             controls={false}
                             className="h-full w-full object-contain"
                             src="/videos/social-highlights.mp4"
-                            poster="/images/social-highlights.jpg"
                             preload="metadata"
                           />
                         )}
