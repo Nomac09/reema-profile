@@ -2,12 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --gold: #d4af37;
-  --off-white: #f9f9f9;
-  --gray-dark: #1a1a1a;
-}
-
+/* Keep only what you need */
 @layer base {
   body {
     @apply text-gray-800 bg-white;
@@ -17,9 +12,5 @@
 @layer components {
   .btn {
     @apply inline-block font-medium text-center border border-transparent transition-all duration-300 hover:-translate-y-1;
-  }
-  
-  .btn-primary {
-    @apply bg-[#d4af37] text-white border-[#d4af37] hover:bg-transparent hover:text-[#d4af37];
   }
 }

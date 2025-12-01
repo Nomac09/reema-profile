@@ -30,7 +30,7 @@ export default function Header() {
 
   return (
     <header
-      className={`pointer-events-none fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${shellClasses}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${shellClasses}`}
     >
       <div className="pointer-events-auto mx-auto flex w-full max-w-6xl items-center justify-between px-[6%]">
         {/* Left: star/initials + My Story */}
