@@ -10,10 +10,10 @@ const slides = [
   { src: "/images/flags-dubai-2.jpg", alt: "Reema in Dubai with flags background" },
 ];
 
-const MAX_ROTATE_DEG = 7; // Increased for more dramatic tilt
-const MIN_SCALE = 0.75; // Decreased for more dramatic shrink
-const MAX_TRANSLATE_Z = -150; // Increased for more dramatic depth
-const DEPTH_SCROLL_HEIGHT = 180; // Reduced from 250 for faster effect
+const MAX_ROTATE_DEG = 7;
+const MIN_SCALE = 0.75;
+const MAX_TRANSLATE_Z = -150;
+const DEPTH_SCROLL_HEIGHT = 180;
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement | null>(null);
@@ -23,7 +23,7 @@ export default function Hero() {
   // For the continuous curtain effect
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
-  const [nextPosition, setNextPosition] = useState(100); // 100 = off screen right, 0 = fully visible
+  const [nextPosition, setNextPosition] = useState(100);
   
   // Continuous right-to-left curtain effect with 3-second pause
   useEffect(() => {
@@ -31,42 +31,36 @@ export default function Hero() {
     let animationId: number | null = null;
     let isAnimating = false;
     
-    const slideSpeed = 1.2; // Speed of slide transition
-    const pauseDuration = 3000; // 3 seconds pause on each slide
+    const slideSpeed = 1.2;
+    const pauseDuration = 3000;
     
     const startTransition = () => {
       if (isAnimating) return;
       
       isAnimating = true;
-      let position = 100; // Start from off-screen right
+      let position = 100;
       
       const animate = () => {
         position -= slideSpeed;
         
         if (position <= 0) {
-          // Transition complete
           position = 0;
           isAnimating = false;
           
-          // Update current slide
           setCurrentIndex(nextIndex);
           setNextIndex((nextIndex + 1) % slides.length);
-          setNextPosition(100); // Reset next slide position
+          setNextPosition(100);
           
-          // Schedule next transition after pause
           timer = setTimeout(startTransition, pauseDuration);
         } else {
-          // Continue animation
           setNextPosition(position);
           animationId = requestAnimationFrame(animate);
         }
       };
       
-      // Start animation
       animationId = requestAnimationFrame(animate);
     };
     
-    // Initial delay before first transition
     timer = setTimeout(startTransition, pauseDuration);
     
     return () => {
@@ -80,24 +74,19 @@ export default function Hero() {
     const stripEl = stripRef.current;
     if (!stripEl) return;
 
-    // Reduced from DEPTH_SCROLL_HEIGHT * 3 to DEPTH_SCROLL_HEIGHT * 1.5 for faster effect completion
     const scrollThreshold = DEPTH_SCROLL_HEIGHT * 1.5;
 
     const onScroll = () => {
       const scrollY = window.scrollY;
       
-      // Calculate effect phase (0 to 1)
       const phase = Math.min(scrollY / scrollThreshold, 1);
-      // Use a more aggressive easing curve for even faster start
-      const eased = Math.pow(phase, 0.7); // Power curve for faster initial effect
+      const eased = Math.pow(phase, 0.7);
       
-      // Apply transforms with more dramatic values
       const scale = 1 - (1 - MIN_SCALE) * eased;
       const rotate = -MAX_ROTATE_DEG * eased;
       const translateZ = MAX_TRANSLATE_Z * eased;
-      const translateY = 50 * eased; // Increased for more movement
+      const translateY = 50 * eased;
       
-      // Apply the combined effect
       stripEl.style.transform = `
         perspective(1500px)
         translateY(${translateY}px)
@@ -107,7 +96,6 @@ export default function Hero() {
         scale(${scale})
       `;
 
-      // After threshold, sync with page scroll
       if (scrollY > scrollThreshold) {
         const extraScroll = scrollY - scrollThreshold;
         stripEl.style.transform += ` translateY(-${extraScroll * 0.8}px)`;
@@ -200,45 +188,49 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Name & titles - scrolls normally */}
+      {/* Name & titles - scrolls normally - MOBILE OPTIMIZED */}
       <div 
         ref={contentRef}
         className="relative z-20 min-h-screen flex flex-col justify-center px-[6%] pb-16"
       >
-        <div className="max-w-xl translate-y-10">
-          <div className="mb-4 text-[0.64rem] uppercase tracking-[0.3em] text-slate-700">
+        {/* Mobile-optimized content container */}
+        <div className="max-w-xl md:translate-y-10">
+          {/* Location text - smaller on mobile */}
+          <div className="mb-2 md:mb-4 text-[0.58rem] md:text-[0.64rem] uppercase tracking-[0.3em] text-slate-700">
             Dubai • Riyadh • Worldwide
           </div>
 
-          <h1 className="font-['Playfair_Display',Georgia,'Times_New_Roman',serif] text-[3.6rem] leading-[0.86] md:text-[5rem] lg:text-[5.6rem] text-slate-900">
+          {/* Name - smaller on mobile, positioned on left side */}
+          <h1 className="font-['Playfair_Display',Georgia,'Times_New_Roman',serif] text-[2.8rem] leading-[0.9] md:text-[3.6rem] lg:text-[5.6rem] text-slate-900 md:leading-[0.86]">
             <span className="block">reema</span>
-            <span className="-mt-4 block font-light tracking-[0.02em]">
+            <span className="-mt-2 md:-mt-4 block font-light tracking-[0.02em]">
               alsawalma
             </span>
           </h1>
 
-          <div className="mt-8 flex flex-wrap gap-6 text-[0.6rem] tracking-[0.22em] uppercase text-slate-900/80">
+          {/* Titles - reorganized for mobile */}
+          <div className="mt-4 md:mt-8 grid grid-cols-2 md:flex md:flex-wrap gap-3 md:gap-6 text-[0.55rem] md:text-[0.6rem] tracking-[0.22em] uppercase text-slate-900/80">
             <div className="flex flex-col gap-1">
               <span>Fashion Designer</span>
-              <span className="text-[0.52rem] tracking-[0.18em] text-slate-700/80">
+              <span className="text-[0.48rem] md:text-[0.52rem] tracking-[0.18em] text-slate-700/80">
                 La Donna Di Ferro
               </span>
             </div>
             <div className="flex flex-col gap-1">
               <span>TV Host</span>
-              <span className="text-[0.52rem] tracking-[0.18em] text-slate-700/80">
+              <span className="text-[0.48rem] md:text-[0.52rem] tracking-[0.18em] text-slate-700/80">
                 Abu Dhabi TV (former)
               </span>
             </div>
             <div className="flex flex-col gap-1">
               <span>Media &amp; Social</span>
-              <span className="text-[0.52rem] tracking-[0.18em] text-slate-700/80">
+              <span className="text-[0.48rem] md:text-[0.52rem] tracking-[0.18em] text-slate-700/80">
                 Millions of story views
               </span>
             </div>
             <div className="flex flex-col gap-1">
               <span>Based In</span>
-              <span className="text-[0.52rem] tracking-[0.18em] text-slate-700/80">
+              <span className="text-[0.48rem] md:text-[0.52rem] tracking-[0.18em] text-slate-700/80">
                 Gulf region
               </span>
             </div>
@@ -246,7 +238,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Spacer for scroll effect - reduced from DEPTH_SCROLL_HEIGHT * 3 to match the new threshold */}
+      {/* Spacer for scroll effect */}
       <div style={{ height: `${DEPTH_SCROLL_HEIGHT * 1.5}px` }}></div>
     </section>
   );
