@@ -120,7 +120,7 @@ export default function Ventures() {
             </div>
 
             <a
-              href="https://oragold-realestate.com"
+              href="https://oragold-realy.com"
               target="_blank"
               rel="noreferrer"
               className="mt-7 inline-flex items-center rounded-full border border-slate-900/20 bg-slate-900 px-6 py-2.5 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-white shadow-sm shadow-black/20 transition hover:-translate-y-0.5 hover:shadow-md"
