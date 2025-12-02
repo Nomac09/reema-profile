@@ -129,7 +129,7 @@ export default function Footer() {
                 La Donna Di Ferro
               </a>
               <a
-                href="https://oragold-realy.com"
+                href="https://oragold-realty.com"
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full border border-slate-700 px-2.5 py-0.5 text-slate-400 hover:border-white hover:text-white transition"
