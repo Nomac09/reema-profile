@@ -23,6 +23,21 @@ export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
   const [nextPosition, setNextPosition] = useState(100);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
   
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
@@ -69,6 +84,17 @@ export default function Hero() {
 
     const onScroll = () => {
       const scrollY = window.scrollY;
+      
+      // Skip 3D effects for mobile
+      if (isMobile) {
+        // Simple fade/move effect for mobile instead
+        const phase = Math.min(scrollY / scrollThreshold, 1);
+        stripEl.style.transform = `translateY(${scrollY * 0.2}px) scale(${1 - phase * 0.1})`;
+        stripEl.style.opacity = `${1 - phase * 0.5}`;
+        return;
+      }
+      
+      // Desktop 3D effect
       const phase = Math.min(scrollY / scrollThreshold, 1);
       const eased = Math.pow(phase, 0.7);
       const scale = 1 - (1 - MIN_SCALE) * eased;
@@ -99,12 +125,7 @@ export default function Hero() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
-
-  const scrollTo = (selector: string) => {
-    const el = document.querySelector<HTMLElement>(selector);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+  }, [isMobile]);
 
   return (
     <section
@@ -112,51 +133,12 @@ export default function Hero() {
       ref={heroRef}
       className="relative w-full min-h-screen overflow-hidden bg-[#f5f3f1] text-slate-900"
     >
-      <div className="fixed inset-0 flex items-center justify-center pointer-events-none">
-        <div
-          ref={stripRef}
-          className="relative w-[122vw] max-w-none md:w-[112vw]"
-          style={{ transformOrigin: "center center" }}
-        >
-          <div className="relative w-full overflow-hidden bg-slate-200">
-            <div className="relative pt-[70%]">
-              <div className="absolute inset-0">
-                <Image
-                  src={slides[currentIndex].src}
-                  alt={slides[currentIndex].alt}
-                  fill
-                  className="object-contain"
-                  sizes="100vw"
-                  priority
-                />
-              </div>
-
-              <div
-                className="absolute inset-0"
-                style={{ transform: `translateX(${nextPosition}%)` }}
-              >
-                <Image
-                  src={slides[nextIndex].src}
-                  alt={slides[nextIndex].alt}
-                  fill
-                  className="object-contain"
-                  sizes="100vw"
-                />
-              </div>
-
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#f5f3f1] via-[#f5f3f1]/40 to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#f5f3f1] via-[#f5f3f1]/40 to-transparent" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Name & titles - moved down by ~2cm using padding-top */}
+      {/* Text content - moved completely above the images */}
       <div 
         ref={contentRef}
-        className="relative z-20 min-h-screen flex flex-col justify-center px-[6%] pb-16 pt-[2cm]"
+        className="relative z-20 w-full pt-24 pb-12 px-[6%] md:pt-28 md:pb-16"
       >
-        <div className="max-w-xl md:translate-y-10">
+        <div className="max-w-xl">
           <div className="mb-2 md:mb-4 text-[0.58rem] md:text-[0.64rem] uppercase tracking-[0.3em] text-slate-700">
             Dubai • Riyadh • Worldwide
           </div>
@@ -197,7 +179,47 @@ export default function Hero() {
         </div>
       </div>
 
-      <div style={{ height: `${DEPTH_SCROLL_HEIGHT * 1.5}px` }}></div>
+      {/* Image slides - positioned below the text */}
+      <div className="fixed inset-0 top-[180px] md:top-[220px] flex items-center justify-center pointer-events-none">
+        <div
+          ref={stripRef}
+          className="relative w-[122vw] max-w-none md:w-[112vw]"
+          style={{ transformOrigin: "center center" }}
+        >
+          <div className="relative w-full overflow-hidden bg-slate-200">
+            <div className="relative pt-[70%]">
+              <div className="absolute inset-0">
+                <Image
+                  src={slides[currentIndex].src}
+                  alt={slides[currentIndex].alt}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                  priority
+                />
+              </div>
+
+              <div
+                className="absolute inset-0"
+                style={{ transform: `translateX(${nextPosition}%)` }}
+              >
+                <Image
+                  src={slides[nextIndex].src}
+                  alt={slides[nextIndex].alt}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                />
+              </div>
+
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#f5f3f1] via-[#f5f3f1]/40 to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#f5f3f1] via-[#f5f3f1]/40 to-transparent" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ height: `${DEPTH_SCROLL_HEIGHT * 2.5}px` }}></div>
     </section>
   );
 }
